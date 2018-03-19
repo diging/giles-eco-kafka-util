@@ -10,6 +10,20 @@ import edu.asu.diging.gilesecosystem.kafka.util.service.IKafkaListenerManager;
 import edu.asu.diging.gilesecosystem.septemberutil.properties.MessageType;
 import edu.asu.diging.gilesecosystem.septemberutil.service.ISystemMessageHandler;
 
+/**
+ * Manager class to start and stop Kafka listeners.
+ * 
+ * This class requires two configuration parameters to be present in a 
+ * config file called 'config.properties':
+ * 
+ * <ul>
+ *  <li>app_name: The name of the application to be displayed in info messages.</li>
+ *  <li>app_url: The base url of the application to be displayed in info messages.</li>
+ * </ul>
+ * 
+ * @author jdamerow
+ *
+ */
 @Service
 @PropertySource("classpath:/config.properties")
 public class KafkaListenerManager implements IKafkaListenerManager {

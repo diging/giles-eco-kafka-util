@@ -8,6 +8,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.asu.diging.gilesecosystem.kafka.util.service.IKafkaListenerManager;
 
+/**
+ * Controller to start and stop Kafka listeners.
+ * 
+ * The following three mappings are provided:
+ * 
+ * <ul>
+ *  <li><code>/admin/kafka/listeners</code>
+ *      <ul>
+ *          <li>provides model attribute <code>listenerStatus</code> that is 
+ *              true or false depending on the state of the Kafka listeners</li>
+ *          <li>expects a Tiles definition <code>admin/kafka/listeners</code></li>
+ *      </ul>
+ *  </li>
+ *  <li><code>/admin/kafka/listeners/start</code>
+ *      <ul>
+ *          <li>starts Kafka listeners</li>
+ *          <li>redirects to <code>/admin/kafka/listeners</code> when done</li>
+ *      </ul>
+ *  </li>
+ *  <li><code>/admin/kafka/listeners/stop</code>
+ *      <ul>
+ *          <li>stops Kafka listeners</li>
+ *          <li>redirects to <code>/admin/kafka/listeners</code> when done</li>
+ *      </ul>
+ *  </li>
+ * </ul>
+ *           
+ * 
+ * @author jdamerow
+ *
+ */
 @Controller
 public class KafkaListenerController {
     
