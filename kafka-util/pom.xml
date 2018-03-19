@@ -4,7 +4,7 @@
     <groupId>edu.asu.diging.giles-eco</groupId>
     <artifactId>kafka-util</artifactId>
     <version>${geco.kafka.util.version}</version>
-    
+
     <properties>
         <geco.kafka.util.version>0.1</geco.kafka.util.version>
         <org.slf4j-version>1.7.5</org.slf4j-version>
@@ -19,7 +19,7 @@
             <artifactId>september-util</artifactId>
             <version>${geco.september.util.version}</version>
         </dependency>
-    
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -46,6 +46,14 @@
             <artifactId>spring-web</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework-version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
