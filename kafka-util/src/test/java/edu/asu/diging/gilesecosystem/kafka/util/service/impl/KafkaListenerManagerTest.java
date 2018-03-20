@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import edu.asu.diging.gilesecosystem.septemberutil.properties.MessageType;
 import edu.asu.diging.gilesecosystem.septemberutil.service.ISystemMessageHandler;
 import junit.framework.Assert;
 
@@ -28,6 +29,12 @@ public class KafkaListenerManagerTest {
     private String APP_NAME = "TestApp";
     private String APP_URL = "http://appurl.test";
     
+    private String STOP_MSG_TITLE = "Stopping Kafka Listeners";
+    private String STOP_MSG = "Stopping Kafka listeners for " + APP_NAME + " at " + APP_URL + ".";
+    
+    private String START_MSG_TITLE = "Starting Kafka Listeners";
+    private String START_MSG = "Starting Kafka listeners for " + APP_NAME + " at " + APP_URL + ".";
+    
     @Before
     public void setUp() {
         managerToTest = new KafkaListenerManager();
@@ -41,6 +48,7 @@ public class KafkaListenerManagerTest {
         Mockito.when(registry.isRunning()).thenReturn(true);
         managerToTest.shutdownListeners();
         Mockito.verify(registry).stop();
+        Mockito.verify(messageHandler).handleMessage(STOP_MSG_TITLE, STOP_MSG, MessageType.INFO);
     }
     
     @Test
@@ -62,6 +70,7 @@ public class KafkaListenerManagerTest {
         Mockito.when(registry.isRunning()).thenReturn(false);
         managerToTest.startListeners();
         Mockito.verify(registry).start();
+        Mockito.verify(messageHandler).handleMessage(START_MSG_TITLE, START_MSG, MessageType.INFO);
     }
     
     @Test
