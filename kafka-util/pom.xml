@@ -1,16 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>edu.asu.diging.giles-eco</groupId>
-    <artifactId>kafka-util</artifactId>
-    <version>${geco.kafka.util.version}</version>
+    <groupId>edu.asu.diging</groupId>
+    <artifactId>giles-eco-kafka-util</artifactId>
+    <version>0.2-SNAPSHOT</version>
 
     <properties>
-        <geco.kafka.util.version>0.1</geco.kafka.util.version>
         <org.slf4j-version>1.7.5</org.slf4j-version>
         <org.springframework-version>4.3.1.RELEASE</org.springframework-version>
         <geco.september.util.version>0.2</geco.september.util.version>
     </properties>
+    
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>
+        Plugin for the Giles Ecoystem that provides utility classes to work
+        and communicate with Kafka.
+    </description>
+    <url>https://github.com/diging/giles-eco-kafka-util</url>
+
+    <licenses>
+        <license>
+            <name>Mozilla Public License 2.0</name>
+            <url>https://www.mozilla.org/en-US/MPL/2.0/</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Julia Damerow</name>
+            <email>jdamerow@asu.edu</email>
+            <organization>Digital Innovation Group, Arizona State University</organization>
+            <organizationUrl>http://diging.asu.edu/</organizationUrl>
+        </developer>
+    </developers>
+    
+    <scm>
+        <connection>scm:git:git://github.com/diging/giles-eco-kafka-util.git</connection>
+        <developerConnection>scm:git:ssh://github.com/diging/giles-eco-kafka-util.git</developerConnection>
+        <url>https://github.com/diging/giles-eco-kafka-util</url>
+    </scm>
 
     <dependencies>
         <!-- Giles Ecosystem -->
@@ -146,9 +174,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -160,6 +202,39 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <versionTagPrefix>v</versionTagPrefix>
                 </configuration>
             </plugin>
         </plugins>
